@@ -1,0 +1,27 @@
+{
+  "name": "classify",
+  "version": "0.0.1",
+  "description": "Minimal class declaring utility for javascript / node.js",
+  "preferGlobal" : false,
+  "main": "src/classify.js",
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mweststrate/classify"
+  },
+  "keywords": [
+    "class",
+    "inheritance",
+    "declare"
+  ],
+  "author": "Michel Weststrate",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mweststrate/classify/issues"
+  },
+  "homepage": "https://github.com/mweststrate/classify",
+  "dependencies": {
+  }
+}
