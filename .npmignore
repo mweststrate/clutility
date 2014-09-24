@@ -1,2 +1,5 @@
-/src
-/test
+src
+test
+notes
+Gruntfile.js
+bower.json

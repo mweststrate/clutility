@@ -1,0 +1,31 @@
+{
+  "name": "classify",
+  "version": "0.0.0",
+  "homepage": "https://github.com/mweststrate/classify",
+  "authors": [
+    "Michel Weststrate <mweststrate@gmail.com>"
+  ],
+  "description": "The minimalistic class and inheritance utility for javascript.",
+  "main": "dist/classify.js",
+  "moduleType": [
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "class",
+    "inheritance",
+    "superclass",
+    "declaration"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src",
+    "Gruntfile.js",
+    "notes",
+    "test",
+    "tests"
+  ]
+}
