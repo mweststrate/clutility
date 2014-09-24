@@ -219,11 +219,3 @@ TODO
 
 TODO
 
-# TODO:
-
-minify
-build
-npmignore
-npm publish
-bower
-add test cases
