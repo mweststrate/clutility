@@ -1,7 +1,20 @@
 clutility
 =========
 
+<img src="logo/logo.png" style="float: right; padding: 0 0 20px 20px; width:250px" align="right"/>
 The minimalistic class and inheritance utility for javascript.
+
+```javascript
+//See example below for the full details
+var MyDoubler = clutility(MyNumber, {
+    initialize : function($super, number) {
+        $super(number * 2);
+    },
+    toString : function($super){
+        return "[MyDoubler, extending: " + $super() + "]";
+    }
+});
+```
 
 clutility is a minimal class declaration system that supports just a few concepts:
 1. Create classes (constructors)
