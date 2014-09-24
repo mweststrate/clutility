@@ -1,15 +1,15 @@
 {
-  "name": "classify",
+  "name": "clutility",
   "version": "0.0.1",
   "description": "The minimalistic class and inheritance utility for javascript",
   "preferGlobal": false,
-  "main": "dist/classify.js",
+  "main": "dist/clutility.js",
   "scripts": {
     "test": "node test/test.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mweststrate/classify"
+    "url": "https://github.com/mweststrate/clutility"
   },
   "keywords": [
     "class",
@@ -19,9 +19,9 @@
   "author": "Michel Weststrate",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mweststrate/classify/issues"
+    "url": "https://github.com/mweststrate/clutility/issues"
   },
-  "homepage": "https://github.com/mweststrate/classify",
+  "homepage": "https://github.com/mweststrate/clutility",
   "dependencies": {},
   "devDependencies": {
     "grunt-contrib-copy": "~0.6.0",

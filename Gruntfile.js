@@ -4,14 +4,14 @@ module.exports = function (grunt) {
       pkg: grunt.file.readJSON('package.json'),
       copy : {
         all : {
-          src : 'src/classify.js',
-          dest: 'dist/classify.js'
+          src : 'src/clutility.js',
+          dest: 'dist/clutility.js'
         }
       },
       uglify: {
         all : {
           files : {
-            'dist/classify.min.js' : ['dist/classify.js']
+            'dist/clutility.min.js' : ['dist/clutility.js']
           }
         }
       },
@@ -22,12 +22,12 @@ module.exports = function (grunt) {
             '\r\n(c) <%= pkg.author %> - <%=  pkg.license %> licensed. \r\n<%= pkg.homepage %> */\r\n',
         },
         max: {
-          src: ['dist/classify.js'],
-          dest: 'dist/classify.js',
+          src: ['dist/clutility.js'],
+          dest: 'dist/clutility.js',
         },
         min: {
-          src: ['dist/classify.min.js'],
-          dest: 'dist/classify.min.js',
+          src: ['dist/clutility.min.js'],
+          dest: 'dist/clutility.min.js',
         },
       },
   });

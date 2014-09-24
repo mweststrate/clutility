@@ -1,10 +1,10 @@
-(function(classify) {
+(function(clutility) {
 	function test(found, expect) {
 		if (found !== expect)
 			throw new Error("Test failed: expected '" + expect + "', found '" + found + "'");
 	}
 
-	var Num = classify({
+	var Num = clutility({
 		state : "shared",
 
 		initialize : function(initial) {
@@ -29,7 +29,7 @@
 
 
 
-	var Doubler = classify(Num, {
+	var Doubler = clutility(Num, {
 		initialize : function($super, num) {
 			$super(num * 2);
 		},
@@ -46,7 +46,7 @@
 
 
 
-	var AnotherDoubler = classify(Num, {
+	var AnotherDoubler = clutility(Num, {
 		initialize : function(num) {
 			this.set(num);
 		},
@@ -63,7 +63,7 @@
 
 
 
-	var YetAnotherDoubler = classify(Num, {
+	var YetAnotherDoubler = clutility(Num, {
 		get : function($super) {
 			return $super() * 2;
 		}
@@ -79,7 +79,7 @@
 
 
 
-	var DoublerNeutralizer = classify(Doubler, {
+	var DoublerNeutralizer = clutility(Doubler, {
 		initialize : function($super, x) {
 			$super(x);
 		},
@@ -112,7 +112,7 @@
 		return this.x;
 	};
 
-	var ClassSubclass = classify(AnyProto, {
+	var ClassSubclass = clutility(AnyProto, {
 		initialize : function($super, y) {
 			$super(y);
 		}
@@ -133,7 +133,7 @@ README example 1: introduction
 */
 
 // Animal is a constructor function, which prototype provides the 'makeSound' and 'printSound' methods.
-var Animal = classify({
+var Animal = clutility({
     sound : null, // (optional) field declaration
 
     //The code that is required to initialize a new instance of this class, should always be put in the 'initialize' function
@@ -149,7 +149,7 @@ var Animal = classify({
 });
 
 //Dog extends the Animal class
-var Dog = classify(Animal, {
+var Dog = clutility(Animal, {
 
     //Dog has its own initializer. But, the initializer of Animal can be called by using $super()
     initialize : function($super, sound) {
@@ -165,7 +165,7 @@ var Dog = classify(Animal, {
 });
 
 //Cat extends the Animal class as well
-var Cat = classify(Animal, {
+var Cat = clutility(Animal, {
     initialize : function($super) {
         $super("meowWWW");
     },
@@ -191,7 +191,7 @@ README example 2: private stuff
 
 
 */
-var Sheep = classify({
+var Sheep = clutility({
     initialize : function(name){
         this.name = name;
     },
@@ -203,7 +203,7 @@ var Sheep = classify({
     }
 });
 
-var Wolf = classify(Sheep, function(zuper) {
+var Wolf = clutility(Sheep, function(zuper) {
     function eatSheep(wolf, sheep) {
         zuper.meet.call(wolf, sheep); //of course, we could also have passed $super
         console.log("You taste delightful, " + sheep.name);
@@ -232,7 +232,7 @@ README 3 beware of static initialized fields
 
 */
 
-var EventListener = classify({
+var EventListener = clutility({
     subscriptions : [],
     nrOfSubscriptions : 0,
     addSubscription : function(item) {
@@ -252,4 +252,4 @@ console.log(e2.subscriptions);
 //prints '["something"]'. Because the member 'subscriptions' never gets reassigned, it is shared through the prototype with all the instances of the class. This might or might not be the intended behavior.
 
 
-})(typeof classify !== "undefined" ? classify : require("../src/classify.js"));
+})(typeof clutility !== "undefined" ? clutility : require("../src/clutility.js"));

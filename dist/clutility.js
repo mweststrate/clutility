@@ -1,6 +1,6 @@
-/*! classify - v0.0.1 - The minimalistic class and inheritance utility for javascript
+/*! clutility - v0.0.1 - The minimalistic class and inheritance utility for javascript
 (c) Michel Weststrate - MIT licensed. 
-https://github.com/mweststrate/classify */
+https://github.com/mweststrate/clutility */
 (function() {
     var slice = Array.prototype.slice;
 
@@ -13,9 +13,9 @@ https://github.com/mweststrate/classify */
         Superclass methods can be invoked by naming the first parameter of a function `$super`.
         The (bound) super implementation well then be injected to the function and can be called.
 
-        Full documentation can be found at https://github.com/mweststrate/classify
+        Full documentation can be found at https://github.com/mweststrate/clutility
     */
-    function classify(superclazz, props){
+    function clutility(superclazz, props){
         if (!superclazz)
             throw new Error("Super class not defined");
 
@@ -112,8 +112,8 @@ https://github.com/mweststrate/classify */
     }
 
     if (typeof exports !== "undefined")
-        module.exports = classify;
-    else if (typeof window !== "undefined" && !window.classify)
-        window.classify = classify;
+        module.exports = clutility;
+    else if (typeof window !== "undefined" && !window.clutility)
+        window.clutility = clutility;
 
 })();

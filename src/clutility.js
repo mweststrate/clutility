@@ -10,9 +10,9 @@
         Superclass methods can be invoked by naming the first parameter of a function `$super`.
         The (bound) super implementation well then be injected to the function and can be called.
 
-        Full documentation can be found at https://github.com/mweststrate/classify
+        Full documentation can be found at https://github.com/mweststrate/clutility
     */
-    function classify(superclazz, props){
+    function clutility(superclazz, props){
         if (!superclazz)
             throw new Error("Super class not defined");
 
@@ -109,8 +109,8 @@
     }
 
     if (typeof exports !== "undefined")
-        module.exports = classify;
-    else if (typeof window !== "undefined" && !window.classify)
-        window.classify = classify;
+        module.exports = clutility;
+    else if (typeof window !== "undefined" && !window.clutility)
+        window.clutility = clutility;
 
 })();
