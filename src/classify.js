@@ -22,6 +22,8 @@
         props = arguments.length == 1 ? superclazz : props;
         superclazz = arguments.length > 1 ? superclazz : Object;
 
+        if (isFunction(props))
+            props = props(superclazz.prototype);
         /*
             find the class initializer and inject '$super' if necessary
         */
