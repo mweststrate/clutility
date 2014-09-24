@@ -84,7 +84,7 @@
     }
 
     function bind(fn, scope) {
-        return function() {
+        return fn.bind ? fn.bind(scope) : function() {
             return fn.apply(scope, arguments);
         };
     }
