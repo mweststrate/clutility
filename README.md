@@ -79,7 +79,7 @@ So, to summarize, there are only three functions to remember:
 
 ## Bower
 
-TODO
+`bower install classify`
 
 ## NPM
 
@@ -90,7 +90,7 @@ Install the npm package to your project:
 Import the class declare function and use it:
 
 ```javascript
-var classify = require("classify");`
+var classify = require("classify");
 
 var MyClass = classify({
         initialize : function() {
@@ -213,9 +213,12 @@ var EventListener =  classify({
 
 ## Mixing in other classes
 
-TODO
+Classify has no built in support for mixins to keep the tool as simple as possible. Yet, it is still easy to mixin another class by extending the prototype manually or by using the `extend` function of your favorite library (jQuery, underscorejs or lodash). For example:
 
-## Calling other super methods
+```javascript
+var MyClass = classify({ /* properties */});
 
-TODO
+jQuery.extend(MyClass.prototype, OtherClass.prototype);
+```
 
+Or you could even extend the definition before passing it to classify.
