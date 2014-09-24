@@ -83,7 +83,8 @@
 		initialize : function($super, x) {
 			$super(x);
 		},
-		set : function($super, x) {
+		set : function(/*y, )*/ $super //nonsense )
+				, x) {
 			$super(x/2);
 		}
 	});
