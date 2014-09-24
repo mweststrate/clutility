@@ -28,7 +28,7 @@ var Animal = classify({
         return this.sound;
     },
     printSound : function() {
-        console.log(this.makeSound())
+        console.log(this.makeSound());
     }
 });
 
@@ -37,7 +37,7 @@ var Dog = classify(Animal, {
 
     //Dog has its own initializer. But, the initializer of Animal can be called by using $super()
     initialize : function($super, sound) {
-        sound += "!!!!"
+        sound += "!!!!";
         //$super can be called at any convenient time, or not at all..
         $super(sound);
     },
@@ -144,9 +144,9 @@ var Sheep = classify({
     }
 });
 
-var Wolf = classify(Sheep, function(super) {
+var Wolf = classify(Sheep, function(zuper) {
     function eatSheep(wolf, sheep) {
-        super.meet.call(wolf, sheep); //of course, we could also have passed $super
+        zuper.meet.call(wolf, sheep); //of course, we could also have passed $super
         console.log("You taste delightful, " + sheep.name);
     }
 
@@ -154,7 +154,7 @@ var Wolf = classify(Sheep, function(super) {
         meet : function(other) {
             eatSheep(this, other);
         }
-    }
+    };
 });
 
 var blackie = new Sheep("Blackie");
@@ -195,7 +195,7 @@ var e1 = new EventListener();
 e1.addSubscription("something");
 var e2 = new EventListener();
 
-console.log(e2.nrofSubscriptions);
+console.log(e2.nrOfSubscriptions);
 //prints '0' (correct, the primitive is overwritten)
 
 console.log(e2.subscriptions);

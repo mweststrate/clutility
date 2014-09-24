@@ -122,6 +122,134 @@
 	test(a.x, 3);
 	test(a.getX(), 3);
 
-	console.log("All tests succeeded");
+	console.log("All base tests succeeded");
+
+/*
+
+
+README example 1: introduction
+
+
+*/
+
+// Animal is a constructor function, which prototype provides the 'makeSound' and 'printSound' methods.
+var Animal = classify({
+    sound : null, // (optional) field declaration
+
+    //The code that is required to initialize a new instance of this class, should always be put in the 'initialize' function
+    initialize : function(sound) {
+        this.sound = sound;
+    },
+    makeSound : function() {
+        return this.sound;
+    },
+    printSound : function() {
+        console.log(this.makeSound());
+    }
+});
+
+//Dog extends the Animal class
+var Dog = classify(Animal, {
+
+    //Dog has its own initializer. But, the initializer of Animal can be called by using $super()
+    initialize : function($super, sound) {
+        sound += "!!!!";
+        //$super can be called at any convenient time, or not at all..
+        $super(sound);
+    },
+    //$super can be used to invoke any overriden class method
+    printSound : function($super){
+        $super();
+        $super();
+    }
+});
+
+//Cat extends the Animal class as well
+var Cat = classify(Animal, {
+    initialize : function($super) {
+        $super("meowWWW");
+    },
+    //It is not mandatory to have a $super call
+    makeSound : function() {
+        return "__" + this.sound + "__!";
+    }
+});
+
+var dog = new Dog("wraf");
+dog.printSound();
+// prints 'wraf!!!!'
+// prints 'wraf!!!!'
+
+var cat = new Cat();
+cat.printSound();
+// prints '__meowWWW__'
+
+
+/*
+
+README example 2: private stuff
+
+
+*/
+var Sheep = classify({
+    initialize : function(name){
+        this.name = name;
+    },
+    meet : function(other) {
+        if (other.eatSheep) //Note that Wolf.eatSheep isn't visible
+            console.log("Hit the road " + other.name + ", and never come back!");
+        if (other instanceof Sheep)
+            console.log("Hi " + other.name + ". Meehh..");
+    }
+});
+
+var Wolf = classify(Sheep, function(zuper) {
+    function eatSheep(wolf, sheep) {
+        zuper.meet.call(wolf, sheep); //of course, we could also have passed $super
+        console.log("You taste delightful, " + sheep.name);
+    }
+
+    return {
+        meet : function(other) {
+            eatSheep(this, other);
+        }
+    };
+});
+
+var blackie = new Sheep("Blackie");
+var jack = new Wolf("Jack");
+
+blackie.meet(jack);
+//prints 'Hi Jack. Meehh..'
+jack.meet(blackie);
+//prints 'Hi Blackie. Meehh..'
+//prints 'You taste delightful, Blackie'
+
+
+/*
+
+README 3 beware of static initialized fields
+
+*/
+
+var EventListener = classify({
+    subscriptions : [],
+    nrOfSubscriptions : 0,
+    addSubscription : function(item) {
+        this.subscriptions.push(item);
+        this.nrOfSubscriptions += 1;
+    }
+});
+
+var e1 = new EventListener();
+e1.addSubscription("something");
+var e2 = new EventListener();
+
+console.log(e2.nrOfSubscriptions);
+//prints '0' (correct, the primitive is overwritten)
+
+console.log(e2.subscriptions);
+//prints '["something"]'. Because the member 'subscriptions' never gets reassigned, it is shared through the prototype with all the instances of the class. This might or might not be the intended behavior.
+
 
 })(typeof classify !== "undefined" ? classify : require("../src/classify.js"));
