@@ -27,8 +27,17 @@
         /*
             find the class initializer and inject '$super' if necessary
         */
-        var clazzConstructor = props.initialize || noop;
-        if (extractFunctionArgumentNames(clazzConstructor)[0] === "$super") {
+        var clazzConstructor = props.initialize;
+        if (!clazzConstructor) {
+            if (superclazz) {
+                clazzConstructor = function(){
+                    superclazz.apply(this, arguments);
+                };
+            }
+            else
+                clazzConstructor = function(){};
+        }
+        else if (extractFunctionArgumentNames(clazzConstructor)[0] === "$super") {
             var baseClazzConstructor = clazzConstructor;
             clazzConstructor = function() {
                 baseClazzConstructor.apply(this, [bind(superclazz, this)].concat(slice.call(arguments)));
@@ -98,8 +107,6 @@
         //from underscore.js
         return typeof obj === "function" || false;
     }
-
-    function noop() {}
 
     if (typeof exports !== "undefined")
         module.exports = classify;

@@ -70,7 +70,7 @@
 	});
 
 	d = new YetAnotherDoubler();
-	test(d.state, "shared");
+	test(d.state, "private");
 	test(isNaN(d.get()), true); //not initialized!
 	d.set(3);
 	test(d.get(), 6);
