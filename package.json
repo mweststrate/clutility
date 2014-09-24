@@ -1,9 +1,9 @@
 {
   "name": "classify",
   "version": "0.0.1",
-  "description": "Minimal class declaring utility for javascript / node.js",
-  "preferGlobal" : false,
-  "main": "src/classify.js",
+  "description": "The minimalistic class and inheritance utility for javascript",
+  "preferGlobal": false,
+  "main": "dist/classify.js",
   "scripts": {
     "test": "node test/test.js"
   },
