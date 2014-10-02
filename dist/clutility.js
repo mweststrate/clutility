@@ -1,4 +1,4 @@
-/*! clutility - v0.0.1 - The minimalistic class and inheritance utility for javascript
+/*! clutility - v0.0.2 - The minimalistic class and inheritance utility for javascript
 (c) Michel Weststrate - MIT licensed. 
 https://github.com/mweststrate/clutility */
 (function() {
@@ -31,14 +31,11 @@ https://github.com/mweststrate/clutility */
             find the class initializer and inject '$super' if necessary
         */
         var clazzConstructor = props.initialize;
+
         if (!clazzConstructor) {
-            if (superclazz) {
-                clazzConstructor = function(){
-                    superclazz.apply(this, arguments);
-                };
-            }
-            else
-                clazzConstructor = function(){};
+            clazzConstructor = function(){
+                superclazz.apply(this, arguments);
+            };
         }
         else if (extractFunctionArgumentNames(clazzConstructor)[0] === "$super") {
             var baseClazzConstructor = clazzConstructor;
@@ -48,20 +45,17 @@ https://github.com/mweststrate/clutility */
         }
 
         /*
+            make sure clazzConstructor inherits from superclazz,
+            without invoking the actual superclass constructor, so that no 
+            state of "new superclazz()" is shared through the prototype chain
+            without explicitly invoking the super initializer 
             setup the prototype chain
-        */
-        var proto = clazzConstructor.prototype = new superclazz();
-
-        /*
-            remove any internal state from the prototype so that it is not accidentally shared.
-            If a subclass is dependent on internal state, it should call the super constractor in
-            it's initialize section
-        */
-        for(var key in proto) if (proto.hasOwnProperty(key))
-            delete proto[key];
-
-        proto.constructor = clazzConstructor; //weird flaw in JS, if you set up a prototype, restore constructor ref afterwards
-        var superproto = superclazz.prototype;
+         */
+        var tmpConstuctor = function() {
+            this.constructor = clazzConstructor;
+        };
+        tmpConstuctor.prototype = superclazz.prototype;
+        var proto = clazzConstructor.prototype = new tmpConstuctor();
 
         /*
             fill the prototype
@@ -71,7 +65,7 @@ https://github.com/mweststrate/clutility */
                 return;
             }
             else if (isFunction(member) && extractFunctionArgumentNames(member)[0] === "$super") {
-                var supermethod = superproto[key];
+                var supermethod = superclazz.prototype[key];
                 if (!supermethod || !isFunction(supermethod))
                     throw new Error("No super method found for '" + key + "'");
 

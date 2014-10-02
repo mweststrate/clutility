@@ -1,6 +1,6 @@
 {
   "name": "clutility",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "The minimalistic class and inheritance utility for javascript",
   "preferGlobal": false,
   "main": "dist/clutility.js",
