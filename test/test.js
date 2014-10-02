@@ -4,6 +4,22 @@
 			throw new Error("Test failed: expected '" + expect + "', found '" + found + "'");
 	}
 
+	var sideeffect = 0;
+
+	var XX = clutility({
+		initialize : function() {
+			sideeffect += 1;
+		}
+	});
+
+	var YY = clutility(XX, {
+		initialize : function() {
+			//no super call
+		}
+	});
+
+	test(sideeffect, 0);
+
 	var Num = clutility({
 		state : "shared",
 
@@ -123,6 +139,8 @@
 	test(a.getX(), 3);
 
 	console.log("All base tests succeeded");
+
+
 
 /*
 
